@@ -1,0 +1,11 @@
+.navbar {
+  -webkit-app-region: drag;
+}
+
+.navbar svg {
+  -webkit-app-region: none;
+}
+
+.navbar [data-role="popover-trigger"] {
+  -webkit-app-region: none;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@tada/database",
+  "private": true,
+  "main": "./client/index.js",
+  "types": "./client/index.d.ts",
+  "scripts": {
+    "dev": "turbo run dev",
+    "generate": "prisma generate",
+    "db:migrate": "prisma migrate dev --create-only",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "better-sqlite3": "^12.5.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "prisma": "^7.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  }
+}

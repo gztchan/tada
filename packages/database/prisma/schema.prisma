@@ -1,0 +1,9 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../client"
+  binaryTargets = ["native", "linux-musl", "darwin", "windows"]
+}
+
+datasource db {
+  provider = "sqlite"
+}

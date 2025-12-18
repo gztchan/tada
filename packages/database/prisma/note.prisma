@@ -1,0 +1,10 @@
+model Note {
+  id        String   @id @default(uuid())
+  title     String?
+  content   Json?
+  config    Json     @default("\"{}\"")
+  metadata  Json     @default("\"{}\"")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}

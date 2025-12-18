@@ -1,0 +1,7 @@
+.tiptap > p {
+  margin: 0.25rem 0;
+}
+
+.tiptap > p {
+  /* break-words: break-all; */
+}

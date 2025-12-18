@@ -1,0 +1,13 @@
+{
+  "name": "@tada/interfaces",
+  "private": true,
+  "description": "An Electron application with React and TypeScript",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "tsc"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

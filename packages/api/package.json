@@ -1,0 +1,22 @@
+{
+  "name": "@tada/api",
+  "description": "API layer for Tada note-taking application",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@tada/database": "workspace:*",
+    "uuid": "^13.0.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/uuid": "^11.0.0",
+    "typescript": "^5.9.3"
+  }
+}

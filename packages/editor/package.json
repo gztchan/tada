@@ -1,0 +1,32 @@
+{
+	"name": "@tada/editor",
+	"private": true,
+	"type": "module",
+	"main": "dist/editor.es.js",
+	"types": "dist/index.d.ts",
+	"styles": "dist/editor.css",
+	"scripts": {
+		"dev": "vite build --watch",
+		"build": "vite build"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-react": "^5.1.2",
+		"typescript": "^5.9.3",
+		"vite-plugin-css-injected-by-js": "^3.5.2",
+		"vite-plugin-dts": "^4.5.4"
+	},
+	"dependencies": {
+		"@tada/ui": "workspace:*",
+		"@tiptap/extension-bubble-menu": "^3.13.0",
+		"@tiptap/extension-list": "^3.10.0",
+		"@tiptap/extension-placeholder": "^3.13.0",
+		"@tiptap/markdown": "^3.10.0",
+		"@tiptap/pm": "^3.10.0",
+		"@tiptap/react": "^3.10.0",
+		"@tiptap/starter-kit": "^3.10.0",
+		"lucide-react": "^0.548.0"
+	},
+	"peerDependencies": {
+		"react": "^19.2.0"
+	}
+}
