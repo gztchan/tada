@@ -34,16 +34,15 @@ export class AboutService extends Mixin(ContextService, EventBusService) {
         titleBarStyle : 'hiddenInset',
         // skipTaskbar: true,
         frame: false,
-        resizable: true,
-        minWidth: 300,
-        minHeight: 400,
-        width: 300,
-        height: 600,
+        resizable: false,
+        width: 400,
+        height: 450,
         // transparent: true,
         webPreferences: {
             preload: getPreloadPath(),
             sandbox: false,
             contextIsolation: true,
+            // nodeIntegration: false,
             // nodeIntegrationInWorker: true,
             // nodeIntegration: false,
             // contextIsolation: false,
@@ -52,8 +51,12 @@ export class AboutService extends Mixin(ContextService, EventBusService) {
 
       this.window.setWindowButtonVisibility(false)
 
-      if (isDev()) this.window.loadURL(`http://localhost:${PORT}/tada/templates/about.html`)
-      else this.window.loadFile(getAboutPath());
+      if (isDev()) this.window.loadURL(`http://localhost:${PORT}/tada/templates/about.html?windowId=${this.window!.id}`)
+      else this.window.loadFile(getAboutPath(), {
+        query: {
+          windowId: this.window!.id.toString(),
+        },
+      });
 
       this.window.on('close', async() => {
         this.window!.destroy();
