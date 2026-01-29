@@ -1,3 +1,5 @@
+![image](https://shkain.s3.us-west-004.backblazeb2.com/2026/01/3c3c0a3351da72c942f7f32e3ebfecb8.png)
+
 # Tada
 
 A lightweight, multi-window **sticky** note-taking app for the desktop(macOS). Built with Electron and React.
