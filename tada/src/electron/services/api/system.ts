@@ -1,31 +1,38 @@
-import { z, ZodObject, ZodAny, check } from 'zod'
-// import { v4 as uuidv4 } from 'uuid'
-import { type BrowserWindow, shell } from "electron"
+import { z, ZodObject, ZodAny } from 'zod'
+import { app, type BrowserWindow } from "electron"
 import { type Context } from '../../context.js'
 import { collection } from '@tada/api';
+import log from 'electron-log';
 
 export function withContext<T extends Record<string, any>, K extends Record<string, any>>(fn: (context: Context, window: BrowserWindow, input: T) => Promise<K>, inputSchema: ZodObject | ZodAny, outputSchema: ZodObject | ZodAny) {
   return async (context: Context, windowId: number, input?: T) => {
-    const window = context.get("window")?.getWindow(windowId);
-    if (!window) {
-      throw new Error("Window not found")
+    const electron  = await import("electron");
+    try {
+      let window = context.get("window")?.getWindow(windowId) ||  electron.BrowserWindow.fromId(windowId) || null;
+
+      if (!window) {
+        throw new Error("Window not found")
+      }
+
+      const { data, error } = inputSchema.safeParse(input || {})
+
+      if (error) {
+        throw new Error(error.message)
+      }
+
+      const result = await fn(context, window, data as T)
+
+      const { data: resultData, error: resultError } = outputSchema.safeParse(result)
+
+      if (resultError) {
+        throw new Error(resultError.message)
+      }
+
+      return resultData as K
+    } catch (error: any) {
+      log.error(error)
+      throw new Error(error instanceof Error ? error.message : "Unknown error")
     }
-
-    const { data, error } = inputSchema.safeParse(input || {})
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    const result = await fn(context, window, data as T)
-
-    const { data: resultData, error: resultError } = outputSchema.safeParse(result)
-
-    if (resultError) {
-      throw new Error(resultError.message)
-    }
-
-    return resultData as K
   }
 }
 
@@ -129,6 +136,20 @@ export class DeleteNote {
   )
 }
 
+export class CloseNotNoteWindow {
+  inputSchema = z.any()
+
+  outputSchema = z.any()
+
+  handler = withContext<z.infer<typeof this.inputSchema>, z.infer<typeof this.outputSchema>>(
+    async (_, window) => {
+      window?.close()
+    },
+    this.inputSchema,
+    this.outputSchema,
+  )
+}
+
 export default {
   switchMovable: new SwitchMovable().handler,
   isMovable: new isMovable().handler,
@@ -136,4 +157,5 @@ export default {
   isResizable: new isResizable().handler,
   closeWindow: new CloseWindow().handler,
   deleteNote: new DeleteNote().handler,
+  closeNotNoteWindow: new CloseNotNoteWindow().handler,
 }
