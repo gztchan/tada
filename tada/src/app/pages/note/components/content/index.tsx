@@ -2,20 +2,16 @@ import { NoteContext } from '../../../../providers/note'
 import { NoteEditor } from '@tada/editor'
 import '@tada/editor/dist/editor.css'
 import { useContext } from 'react'
-
 import { useSnapshot } from 'valtio'
+
+import { NoteEmpty } from '../note-empty'
 
 export function NoteContent() {
   const { service } = useContext(NoteContext)!
-
-
   const state = useSnapshot(service.state)
-  if (state.loading) {
-    return <div>Loading...</div>
-  }
 
   if (!state.note) {
-    return <div>No note found</div>
+    return <NoteEmpty />
   }
 
   return (
