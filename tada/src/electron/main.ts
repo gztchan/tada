@@ -14,6 +14,8 @@ import { AboutService } from "./services/about.js";
 import { getDockIconPath } from "./path-resolver.js";
 import log from 'electron-log';
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+
 log.transports.file.level = 'info';          // 想看到 info 必须改这个
 log.transports.file.maxSize = 5 * 1024 * 1024;  // 5MB 轮转
 log.transports.file.fileName = 'tada.log';   // 可自定义文件名

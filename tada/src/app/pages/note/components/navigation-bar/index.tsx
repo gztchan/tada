@@ -32,7 +32,7 @@ export function NavigationBar() {
             <p data-role="popover-trigger" className="text-center text-sm font-bold cursor-pointer select-none truncate line-clamp-1">{state.note?.title}</p>
           </PopoverTrigger>
           <PopoverContent side="bottom" align="start" sideOffset={10} className="w-auto">
-            <Input defaultValue={state.note?.title || ''} onChange={(e) => {
+            <Input className="!text-xs" defaultValue={state.note?.title || ''} onChange={(e) => {
               service.updateNote({ noteId: state.note!.id, title: e.target.value.trim() })
             }} />
           </PopoverContent>

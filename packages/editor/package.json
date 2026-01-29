@@ -18,13 +18,17 @@
 	"dependencies": {
 		"@tada/ui": "workspace:*",
 		"@tiptap/extension-bubble-menu": "^3.13.0",
+		"@tiptap/extension-details": "^3.18.0",
+		"@tiptap/extension-image": "^3.18.0",
 		"@tiptap/extension-list": "^3.10.0",
 		"@tiptap/extension-placeholder": "^3.13.0",
+		"@tiptap/extension-youtube": "^3.18.0",
 		"@tiptap/markdown": "^3.10.0",
 		"@tiptap/pm": "^3.10.0",
 		"@tiptap/react": "^3.10.0",
 		"@tiptap/starter-kit": "^3.10.0",
-		"lucide-react": "^0.548.0"
+		"lucide-react": "^0.548.0",
+		"react-tweet": "^3.3.0"
 	},
 	"peerDependencies": {
 		"react": "^19.2.0"

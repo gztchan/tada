@@ -83,7 +83,10 @@ export class NoteWindowService extends Mixin(ContextService, EventBusService) {
             nodeIntegration: false,
             // nodeIntegrationInWorker: true,
             // nodeIntegration: false,
-            // contextIsolation: false,
+            // contextIsolation: false
+            webSecurity: false,
+            webviewTag: true,
+            allowRunningInsecureContent: true,
         }
       });
 

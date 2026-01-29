@@ -5,6 +5,11 @@ import { Markdown } from '@tiptap/markdown'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
 import { EditorBubbleMenu } from './menus/bubble'
 import Placeholder from '@tiptap/extension-placeholder'
+import Image from '@tiptap/extension-image'
+import Youtube from '@tiptap/extension-youtube'
+import { Details, DetailsContent, DetailsSummary } from '@tiptap/extension-details'
+
+import { X } from './plugins/x'
 
 import './styles/editor.css'
 import './styles/paragraph.css'
@@ -19,13 +24,30 @@ export function NoteEditor(props: NoteEditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Image,
       Markdown,
       TaskList,
       TaskItem,
+      Details.configure({
+        persist: true,
+        HTMLAttributes: {
+          class: 'details',
+        },
+      }),
+      DetailsSummary,
+      DetailsContent,
       Placeholder.configure({
         showOnlyWhenEditable: true,
         placeholder: 'Something great happens ...',
       }),
+      Youtube.configure({
+        controls: false,
+        nocookie: true,
+        HTMLAttributes: {
+          class: "w-full max-md:h-[200px]",
+        }
+      }),
+      X,
     ],
     content: props.content, // initial content
     editorProps: {
